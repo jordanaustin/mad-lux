@@ -1,6 +1,28 @@
 # \<mad-lux\>
 
-Ambient Light Sensor
+Ambient Light Sensor Polymer element.
+
+⚠️ NOTE: This uses the generic sensor API which isn't availabile in every browser yet. Try FireFox, this seems to be well supported right now.
+
+## Using the <mad-lux> element
+
+<!--
+```
+<custom-element-demo>
+  <template>
+    <link rel="import" href="mad-lux.html">
+    <next-code-block></next-code-block>
+  </template>
+</custom-element-demo>
+```
+-->
+```html
+<h1>Illuminance: [[illuminance]]lux</h1>
+<p>👋 wave your hand across your light sensor</p>
+
+<mad-lux></mad-lux>
+```
+
 
 ## Install the Polymer-CLI
 
