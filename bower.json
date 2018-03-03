@@ -12,5 +12,24 @@
   },
   "resolutions": {
     "polymer": "^2.0.0"
-  }
+  },
+  "homepage": "https://github.com/madattr/mad-lux",
+  "authors": [
+    "Jordan Austin <jrax86@gmail.com>"
+  ],
+  "keywords": [
+    "ambient",
+    "light",
+    "sensor",
+    "illumination",
+    "lux"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
 }
