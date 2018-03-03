@@ -1,0 +1,63 @@
+<link rel="import" href="../polymer/polymer-element.html">
+
+<dom-module id="mad-lux">
+  <template>
+    <div id="wrapper">
+      <slot></slot>
+    </div>
+  </template>
+
+  <script>
+    /**
+     * `mad-lux`
+     * Ambient Light Sensor
+     *
+     * @customElement
+     * @polymer
+     * @demo demo/index.html
+     */
+    class MadLux extends Polymer.Element {
+      static get is() { return 'mad-lux'; }
+      static get properties() {
+        return {
+          illuminance: {
+            type: Number,
+            value: 0,
+            reflectToAttribute: true
+          },
+          illuminanceAsBackground: {
+            type: Boolean
+          }
+        };
+      }
+      connectedCallback() {
+        super.connectedCallback();
+
+        if ('AmbientLightSensor' in window) {
+          try {
+            const sensor = new AmbientLightSensor();
+            sensor.addEventListener('reading', (event) => {
+              this._update(sensor.illuminance);
+            });
+            sensor.start();
+          } catch (e) {
+            console.error(e);
+          }
+        }
+
+        if ('ondevicelight' in window) {
+          window.addEventListener('devicelight', (event) => {
+            this._update(event.value);
+          });
+        }
+      }
+
+      _update(illuminance) {
+        this.illuminance = illuminance;
+        this.dispatchEvent(new CustomEvent('illumination-changed', {detail: illuminance}));
+      }
+    }
+
+      window.customElements.define(MadLux.is, MadLux);
+  </script>
+</dom-module>

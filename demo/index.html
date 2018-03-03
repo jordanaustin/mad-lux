@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+
+    <title>mad-lux demo</title>
+
+    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+
+    <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
+    <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
+
+    <link rel="import" href="../mad-lux.html">
+
+    <custom-style>
+      <style is="custom-style" include="demo-pages-shared-styles">
+        h1 {
+          padding: 0.25em;
+        }
+      </style>
+    </custom-style>
+  </head>
+  <body>
+    <div class="vertical-section-container centered">
+      <h3>Basic mad-lux demo</h3>
+        <demo-snippet>
+          <template>
+            <p id="illumination"></p>
+            <mad-lux></mad-lux>
+          </template>
+        </demo-snippet>
+    </div>
+    <script>
+      const madLux = document.querySelector('mad-lux');
+      const p = document.querySelector('#illumination');
+      madLux.addEventListener('illuminance-changed', (e) => {
+        console.log('e');
+        p.textContent = e.detail;
+      });
+    </script>
+  </body>
+</html>
