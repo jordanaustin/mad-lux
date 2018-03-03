@@ -50,11 +50,16 @@
             this._update(event.value);
           });
         }
+
+        // force value to set to inital value
+        setTimeout(() => {
+          this._update(this.illuminance);
+        });
       }
 
       _update(illuminance) {
         this.illuminance = illuminance;
-        this.dispatchEvent(new CustomEvent('illumination-changed', {detail: illuminance}));
+        this.dispatchEvent(new CustomEvent('illuminance-changed', { detail: illuminance }));
       }
     }
 

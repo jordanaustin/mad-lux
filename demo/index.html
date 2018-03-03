@@ -26,17 +26,26 @@
       <h3>Basic mad-lux demo</h3>
         <demo-snippet>
           <template>
-            <p id="illumination"></p>
+            <h1>Illuminance: <span id="illumination"></span>lux</h1>
+            <p>👋 wave your hand across your light sensor</p>
+
             <mad-lux></mad-lux>
           </template>
         </demo-snippet>
     </div>
     <script>
-      const madLux = document.querySelector('mad-lux');
-      const p = document.querySelector('#illumination');
-      madLux.addEventListener('illuminance-changed', (e) => {
-        console.log('e');
-        p.textContent = e.detail;
+      window.addEventListener('WebComponentsReady', () => {
+        const madLux = document.querySelector('mad-lux');
+        const lux = document.querySelector('#illumination');
+        const h1 = document.querySelector('h1');
+        madLux.addEventListener('illuminance-changed', (e) => {
+          const illuminance = e.detail;
+          const luxToRGB = illuminance * 2.55;
+          const inverseLuxToRGB = 255 - illuminance;
+          h1.style.backgroundColor = `rgb(${luxToRGB},${luxToRGB},${luxToRGB})`;
+          h1.style.color = `rgb(${inverseLuxToRGB},${inverseLuxToRGB},${inverseLuxToRGB})`;
+          lux.textContent = illuminance;
+        });
       });
     </script>
   </body>
